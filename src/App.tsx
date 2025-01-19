@@ -1,8 +1,11 @@
 import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider, CssBaseline } from '@mui/material';
 import { createTheme } from '@mui/material/styles';
+import { Routes, Route } from 'react-router-dom';
+import MainLayout from './layouts/MainLayout';
+import Dashboard from './pages/Dashboard';
 
-// Create a theme instance
+// Theme configuration (previous code remains the same)
 const theme = createTheme({
   palette: {
     primary: {
@@ -57,12 +60,16 @@ const theme = createTheme({
 
 function App() {
   return (
-    <BrowserRouter>
-      <ThemeProvider theme={theme}>
-        <CssBaseline /> {/* Normalize CSS */}
-        {/* Your app routes and components will go here */}
-      </ThemeProvider>
-    </BrowserRouter>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <MainLayout>
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/users" element={<div>Users Page (To be implemented)</div>} />
+          <Route path="/settings" element={<div>Settings Page (To be implemented)</div>} />
+        </Routes>
+      </MainLayout>
+    </ThemeProvider>
   );
 }
 
